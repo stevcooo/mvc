@@ -24,6 +24,9 @@
         <th>
             @Html.DisplayNameFor(model => model.NumberOfCredits)
         </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SemesterType)
+        </th>
         <th></th>
     </tr>
 
@@ -40,6 +43,9 @@
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.NumberOfCredits)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SemesterType)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |

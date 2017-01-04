@@ -29,10 +29,7 @@ namespace ClassesScheduler.Models
         {
             return new ApplicationDbContext();
         }
-    }
-
-    public class ClassesSchedulerDbContext : DbContext
-    {
         public DbSet<Course> Courses { get; set; }
-    }
+
+    }    
 }

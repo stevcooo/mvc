@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using ClassesScheduler.Enums;
+using System.ComponentModel.DataAnnotations;
 
 namespace ClassesScheduler.Models
 {
@@ -21,5 +22,9 @@ namespace ClassesScheduler.Models
         [Required]
         [Display(Name = "ЕКТС кредити")]
         public int NumberOfCredits { get; set; }
+
+        [Required]
+        [Display(Name = "Семестар")]
+        public Semester SemesterType { get; set; }
     }
 }

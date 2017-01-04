@@ -16,6 +16,7 @@ namespace ClassesScheduler.Migrations
                         Description = c.String(),
                         IsMandatorySubject = c.Boolean(nullable: false),
                         NumberOfCredits = c.Int(nullable: false),
+                        SemesterType = c.Int(nullable: false),
                     })
                 .PrimaryKey(t => t.Id);
             
