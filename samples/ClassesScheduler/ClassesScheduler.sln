@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClassesScheduler", "ClassesScheduler\ClassesScheduler.csproj", "{D9917838-B5CC-4181-8128-99D205C5CF8E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClassesScheduler.Tests", "ClassesScheduler.Tests\ClassesScheduler.Tests.csproj", "{E8AA2E61-7B24-44FA-A9AA-AC18D947BBB1}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D9917838-B5CC-4181-8128-99D205C5CF8E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D9917838-B5CC-4181-8128-99D205C5CF8E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D9917838-B5CC-4181-8128-99D205C5CF8E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D9917838-B5CC-4181-8128-99D205C5CF8E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E8AA2E61-7B24-44FA-A9AA-AC18D947BBB1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E8AA2E61-7B24-44FA-A9AA-AC18D947BBB1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E8AA2E61-7B24-44FA-A9AA-AC18D947BBB1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E8AA2E61-7B24-44FA-A9AA-AC18D947BBB1}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
