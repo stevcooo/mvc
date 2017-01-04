@@ -1,5 +1,7 @@
 ﻿using ClassesScheduler.Enums;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ClassesScheduler.Models
 {
@@ -26,5 +28,11 @@ namespace ClassesScheduler.Models
         [Required]
         [Display(Name = "Семестар")]
         public Semester SemesterType { get; set; }
+
+        [DisplayName("Тип")]
+        public int ProffesorId { get; set; }
+
+        [ForeignKey("ProffesorId")]
+        public virtual Proffesor Proffesor { get; set; }
     }
 }

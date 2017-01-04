@@ -3,7 +3,7 @@ namespace ClassesScheduler.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class initial : DbMigration
+    public partial class prof4 : DbMigration
     {
         public override void Up()
         {
@@ -17,6 +17,19 @@ namespace ClassesScheduler.Migrations
                         IsMandatorySubject = c.Boolean(nullable: false),
                         NumberOfCredits = c.Int(nullable: false),
                         SemesterType = c.Int(nullable: false),
+                        ProffesorId = c.Int(nullable: false),
+                    })
+                .PrimaryKey(t => t.Id)
+                .ForeignKey("dbo.Proffesors", t => t.ProffesorId, cascadeDelete: true)
+                .Index(t => t.ProffesorId);
+            
+            CreateTable(
+                "dbo.Proffesors",
+                c => new
+                    {
+                        Id = c.Int(nullable: false, identity: true),
+                        FirstName = c.String(nullable: false),
+                        LastName = c.String(),
                     })
                 .PrimaryKey(t => t.Id);
             
@@ -96,17 +109,20 @@ namespace ClassesScheduler.Migrations
             DropForeignKey("dbo.AspNetUserLogins", "UserId", "dbo.AspNetUsers");
             DropForeignKey("dbo.AspNetUserClaims", "UserId", "dbo.AspNetUsers");
             DropForeignKey("dbo.AspNetUserRoles", "RoleId", "dbo.AspNetRoles");
+            DropForeignKey("dbo.Courses", "ProffesorId", "dbo.Proffesors");
             DropIndex("dbo.AspNetUserLogins", new[] { "UserId" });
             DropIndex("dbo.AspNetUserClaims", new[] { "UserId" });
             DropIndex("dbo.AspNetUsers", "UserNameIndex");
             DropIndex("dbo.AspNetUserRoles", new[] { "RoleId" });
             DropIndex("dbo.AspNetUserRoles", new[] { "UserId" });
             DropIndex("dbo.AspNetRoles", "RoleNameIndex");
+            DropIndex("dbo.Courses", new[] { "ProffesorId" });
             DropTable("dbo.AspNetUserLogins");
             DropTable("dbo.AspNetUserClaims");
             DropTable("dbo.AspNetUsers");
             DropTable("dbo.AspNetUserRoles");
             DropTable("dbo.AspNetRoles");
+            DropTable("dbo.Proffesors");
             DropTable("dbo.Courses");
         }
     }

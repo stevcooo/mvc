@@ -30,6 +30,7 @@ namespace ClassesScheduler.Models
             return new ApplicationDbContext();
         }
         public DbSet<Course> Courses { get; set; }
+        public DbSet<Proffesor> Proffesors { get; set; }
 
     }    
 }

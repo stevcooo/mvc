@@ -7,13 +7,13 @@ namespace ClassesScheduler.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class initial : IMigrationMetadata
+    public sealed partial class prof4 : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(initial));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(prof4));
         
         string IMigrationMetadata.Id
         {
-            get { return "201701041818100_initial"; }
+            get { return "201701041850377_prof4"; }
         }
         
         string IMigrationMetadata.Source

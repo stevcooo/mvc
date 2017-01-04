@@ -10,112 +10,107 @@ using ClassesScheduler.Models;
 
 namespace ClassesScheduler.Controllers
 {
-    public class CoursesController : Controller
+    public class ProffesorsController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
-        // GET: Courses
+        // GET: Proffesors
         public ActionResult Index()
         {
-            var courses = db.Courses.Include(c => c.Proffesor);
-            return View(courses.ToList());
+            return View(db.Proffesors.ToList());
         }
 
-        // GET: Courses/Details/5
+        // GET: Proffesors/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Course course = db.Courses.Find(id);
-            if (course == null)
+            Proffesor proffesor = db.Proffesors.Find(id);
+            if (proffesor == null)
             {
                 return HttpNotFound();
             }
-            return View(course);
+            return View(proffesor);
         }
 
-        // GET: Courses/Create
+        // GET: Proffesors/Create
         public ActionResult Create()
         {
-            ViewBag.ProffesorId = new SelectList(db.Proffesors, "Id", "FirstName");
             return View();
         }
 
-        // POST: Courses/Create
+        // POST: Proffesors/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Name,Description,IsMandatorySubject,NumberOfCredits,SemesterType,ProffesorId")] Course course)
+        public ActionResult Create([Bind(Include = "Id,FirstName,LastName")] Proffesor proffesor)
         {
             if (ModelState.IsValid)
             {
-                db.Courses.Add(course);
+                db.Proffesors.Add(proffesor);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            ViewBag.ProffesorId = new SelectList(db.Proffesors, "Id", "FirstName", course.ProffesorId);
-            return View(course);
+            return View(proffesor);
         }
 
-        // GET: Courses/Edit/5
+        // GET: Proffesors/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Course course = db.Courses.Find(id);
-            if (course == null)
+            Proffesor proffesor = db.Proffesors.Find(id);
+            if (proffesor == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.ProffesorId = new SelectList(db.Proffesors, "Id", "FirstName", course.ProffesorId);
-            return View(course);
+            return View(proffesor);
         }
 
-        // POST: Courses/Edit/5
+        // POST: Proffesors/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Name,Description,IsMandatorySubject,NumberOfCredits,SemesterType,ProffesorId")] Course course)
+        public ActionResult Edit([Bind(Include = "Id,FirstName,LastName")] Proffesor proffesor)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(course).State = EntityState.Modified;
+                db.Entry(proffesor).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.ProffesorId = new SelectList(db.Proffesors, "Id", "FirstName", course.ProffesorId);
-            return View(course);
+            return View(proffesor);
         }
 
-        // GET: Courses/Delete/5
+        // GET: Proffesors/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Course course = db.Courses.Find(id);
-            if (course == null)
+            Proffesor proffesor = db.Proffesors.Find(id);
+            if (proffesor == null)
             {
                 return HttpNotFound();
             }
-            return View(course);
+            return View(proffesor);
         }
 
-        // POST: Courses/Delete/5
+        // POST: Proffesors/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Course course = db.Courses.Find(id);
-            db.Courses.Remove(course);
+            Proffesor proffesor = db.Proffesors.Find(id);
+            db.Proffesors.Remove(proffesor);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

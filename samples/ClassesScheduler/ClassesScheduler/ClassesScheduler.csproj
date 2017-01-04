@@ -181,12 +181,13 @@
     <Compile Include="Controllers\CoursesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\ProffesorsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201701041818100_initial.cs" />
-    <Compile Include="Migrations\201701041818100_initial.Designer.cs">
-      <DependentUpon>201701041818100_initial.cs</DependentUpon>
+    <Compile Include="Migrations\201701041850377_prof4.cs" />
+    <Compile Include="Migrations\201701041850377_prof4.Designer.cs">
+      <DependentUpon>201701041850377_prof4.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -250,6 +251,11 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\Proffesors\Create.cshtml" />
+    <Content Include="Views\Proffesors\Delete.cshtml" />
+    <Content Include="Views\Proffesors\Details.cshtml" />
+    <Content Include="Views\Proffesors\Edit.cshtml" />
+    <Content Include="Views\Proffesors\Index.cshtml" />
     <Content Include="Views\Courses\Create.cshtml" />
     <Content Include="Views\Courses\Delete.cshtml" />
     <Content Include="Views\Courses\Details.cshtml" />
@@ -274,8 +280,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201701041818100_initial.resx">
-      <DependentUpon>201701041818100_initial.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201701041850377_prof4.resx">
+      <DependentUpon>201701041850377_prof4.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
