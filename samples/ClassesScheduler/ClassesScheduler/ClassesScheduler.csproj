@@ -178,16 +178,18 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\ClassSchedulesController.cs" />
     <Compile Include="Controllers\CoursesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\ProffesorsController.cs" />
+    <Compile Include="Controllers\SemestarSchedulesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201701041850377_prof4.cs" />
-    <Compile Include="Migrations\201701041850377_prof4.Designer.cs">
-      <DependentUpon>201701041850377_prof4.cs</DependentUpon>
+    <Compile Include="Migrations\201701061717490_s1.cs" />
+    <Compile Include="Migrations\201701061717490_s1.Designer.cs">
+      <DependentUpon>201701061717490_s1.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -261,6 +263,16 @@
     <Content Include="Views\Courses\Details.cshtml" />
     <Content Include="Views\Courses\Edit.cshtml" />
     <Content Include="Views\Courses\Index.cshtml" />
+    <Content Include="Views\ClassSchedules\Create.cshtml" />
+    <Content Include="Views\ClassSchedules\Delete.cshtml" />
+    <Content Include="Views\ClassSchedules\Details.cshtml" />
+    <Content Include="Views\ClassSchedules\Edit.cshtml" />
+    <Content Include="Views\ClassSchedules\Index.cshtml" />
+    <Content Include="Views\SemestarSchedules\Create.cshtml" />
+    <Content Include="Views\SemestarSchedules\Delete.cshtml" />
+    <Content Include="Views\SemestarSchedules\Details.cshtml" />
+    <Content Include="Views\SemestarSchedules\Edit.cshtml" />
+    <Content Include="Views\SemestarSchedules\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -280,8 +292,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201701041850377_prof4.resx">
-      <DependentUpon>201701041850377_prof4.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201701061717490_s1.resx">
+      <DependentUpon>201701061717490_s1.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

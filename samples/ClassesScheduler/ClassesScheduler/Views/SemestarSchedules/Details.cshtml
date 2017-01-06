@@ -1,0 +1,51 @@
+﻿@model ClassesScheduler.Models.SemestarSchedule
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>SemestarSchedule</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Year)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Year)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SemesterType)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SemesterType)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.YearOfStudy)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.YearOfStudy)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.StudyField)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.StudyField)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

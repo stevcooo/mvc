@@ -11,7 +11,7 @@ namespace ClassesScheduler.Models
         public int Id { get; set; }
 
         [Required]
-        [Display(Name = "Име")]
+        [Display(Name = "Име на предмет")]
         public string Name { get; set; }
 
         [Display(Name = "Опис")]
@@ -29,7 +29,7 @@ namespace ClassesScheduler.Models
         [Display(Name = "Семестар")]
         public Semester SemesterType { get; set; }
 
-        [DisplayName("Тип")]
+        [DisplayName("Професор")]
         public int ProffesorId { get; set; }
 
         [ForeignKey("ProffesorId")]

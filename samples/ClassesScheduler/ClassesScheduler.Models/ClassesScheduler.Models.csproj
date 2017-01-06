@@ -42,8 +42,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Enums\Semester.cs" />
+    <Compile Include="Enums\StudyField.cs" />
+    <Compile Include="Enums\WeekDay.cs" />
+    <Compile Include="Models\ClassSchedule.cs" />
     <Compile Include="Models\Course.cs" />
     <Compile Include="Models\Proffesor.cs" />
+    <Compile Include="Models\SemestarSchedule.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

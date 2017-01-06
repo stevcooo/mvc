@@ -3,10 +3,28 @@ namespace ClassesScheduler.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class prof4 : DbMigration
+    public partial class s1 : DbMigration
     {
         public override void Up()
         {
+            CreateTable(
+                "dbo.ClassSchedules",
+                c => new
+                    {
+                        Id = c.Int(nullable: false, identity: true),
+                        ClassromCode = c.String(nullable: false),
+                        FromHour = c.Int(nullable: false),
+                        ToHour = c.Int(nullable: false),
+                        WeekDay = c.Int(nullable: false),
+                        CourseId = c.Int(nullable: false),
+                        SemestarScheduleId = c.Int(nullable: false),
+                    })
+                .PrimaryKey(t => t.Id)
+                .ForeignKey("dbo.Courses", t => t.CourseId, cascadeDelete: true)
+                .ForeignKey("dbo.SemestarSchedules", t => t.SemestarScheduleId, cascadeDelete: true)
+                .Index(t => t.CourseId)
+                .Index(t => t.SemestarScheduleId);
+            
             CreateTable(
                 "dbo.Courses",
                 c => new
@@ -30,6 +48,18 @@ namespace ClassesScheduler.Migrations
                         Id = c.Int(nullable: false, identity: true),
                         FirstName = c.String(nullable: false),
                         LastName = c.String(),
+                    })
+                .PrimaryKey(t => t.Id);
+            
+            CreateTable(
+                "dbo.SemestarSchedules",
+                c => new
+                    {
+                        Id = c.Int(nullable: false, identity: true),
+                        Year = c.Int(nullable: false),
+                        SemesterType = c.Int(nullable: false),
+                        YearOfStudy = c.String(nullable: false),
+                        StudyField = c.Int(nullable: false),
                     })
                 .PrimaryKey(t => t.Id);
             
@@ -109,6 +139,8 @@ namespace ClassesScheduler.Migrations
             DropForeignKey("dbo.AspNetUserLogins", "UserId", "dbo.AspNetUsers");
             DropForeignKey("dbo.AspNetUserClaims", "UserId", "dbo.AspNetUsers");
             DropForeignKey("dbo.AspNetUserRoles", "RoleId", "dbo.AspNetRoles");
+            DropForeignKey("dbo.ClassSchedules", "SemestarScheduleId", "dbo.SemestarSchedules");
+            DropForeignKey("dbo.ClassSchedules", "CourseId", "dbo.Courses");
             DropForeignKey("dbo.Courses", "ProffesorId", "dbo.Proffesors");
             DropIndex("dbo.AspNetUserLogins", new[] { "UserId" });
             DropIndex("dbo.AspNetUserClaims", new[] { "UserId" });
@@ -117,13 +149,17 @@ namespace ClassesScheduler.Migrations
             DropIndex("dbo.AspNetUserRoles", new[] { "UserId" });
             DropIndex("dbo.AspNetRoles", "RoleNameIndex");
             DropIndex("dbo.Courses", new[] { "ProffesorId" });
+            DropIndex("dbo.ClassSchedules", new[] { "SemestarScheduleId" });
+            DropIndex("dbo.ClassSchedules", new[] { "CourseId" });
             DropTable("dbo.AspNetUserLogins");
             DropTable("dbo.AspNetUserClaims");
             DropTable("dbo.AspNetUsers");
             DropTable("dbo.AspNetUserRoles");
             DropTable("dbo.AspNetRoles");
+            DropTable("dbo.SemestarSchedules");
             DropTable("dbo.Proffesors");
             DropTable("dbo.Courses");
+            DropTable("dbo.ClassSchedules");
         }
     }
 }

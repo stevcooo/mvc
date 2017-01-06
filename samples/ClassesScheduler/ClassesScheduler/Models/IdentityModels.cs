@@ -31,6 +31,8 @@ namespace ClassesScheduler.Models
         }
         public DbSet<Course> Courses { get; set; }
         public DbSet<Proffesor> Proffesors { get; set; }
+        public DbSet<ClassSchedule> ClassSchedules { get; set; }
+        public DbSet<SemestarSchedule> SemestarSchedules { get; set; }
 
     }    
 }

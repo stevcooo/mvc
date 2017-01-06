@@ -1,0 +1,67 @@
+﻿@model ClassesScheduler.Models.ClassSchedule
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>ClassSchedule</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Course.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Course.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SemestarSchedule.YearOfStudy)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SemestarSchedule.YearOfStudy)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ClassromCode)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ClassromCode)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FromHour)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FromHour)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ToHour)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ToHour)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.WeekDay)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.WeekDay)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
