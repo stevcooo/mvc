@@ -40,7 +40,14 @@ namespace ClassesScheduler.Controllers
         public ActionResult Create()
         {
             ViewBag.CourseId = new SelectList(db.Courses, "Id", "Name");
-            ViewBag.SemestarScheduleId = new SelectList(db.SemestarSchedules, "Id", "YearOfStudy");
+
+            IEnumerable<SelectListItem> semesters = db.SemestarSchedules
+                                                   .Select(c => new SelectListItem
+                                                   {
+                                                       Value = c.Id.ToString(),                                                       
+                                                       Text = c.Year.ToString() +" | "+ c.SemesterType.ToString() + " | " + c.StudyField.ToString()                                                       
+                                                   });
+            ViewBag.SemestarScheduleId = semesters;
             return View();
         }
 
