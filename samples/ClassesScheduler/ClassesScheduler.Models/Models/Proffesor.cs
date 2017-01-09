@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using Newtonsoft.Json;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace ClassesScheduler.Models
@@ -14,7 +15,8 @@ namespace ClassesScheduler.Models
 
         [Display(Name = "Презиме")]
         public string LastName { get; set; }
-
+               
+        [JsonIgnore]
         public virtual ICollection<Course> TeachingCourses { get; set; }
     }
 }
