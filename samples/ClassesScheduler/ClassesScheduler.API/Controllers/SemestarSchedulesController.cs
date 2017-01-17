@@ -39,32 +39,17 @@ namespace ClassesScheduler.API.Controllers
 
             return Ok(semestarSchedules);
         }
-
+                      
         [HttpGet]
-        [Route("api/semestarSchedules/{year}")]
-        [ResponseType(typeof(ICollection<SemestarSchedule>))]
-        public async Task<IHttpActionResult> GetSemestarScheduleForYear(int year)
+        [Route("api/semestarSchedules/{studyField}/{yearOfStudy}/{semesterType}")]
+        [ResponseType(typeof(SemestarSchedule))]
+        public async Task<IHttpActionResult> GetSemestarScheduleForYearAndField(StudyField studyField, string yearOfStudy, Semester semesterType)
         {
-            var semestarSchedules = await db.SemestarSchedules.Where(t=>t.Year == year).ToListAsync();
+            var semestarSchedules = await db.SemestarSchedules.FirstOrDefaultAsync(t => t.YearOfStudy == yearOfStudy && t.SemesterType == semesterType && t.StudyField == studyField);
             if (semestarSchedules == null)
             {
                 return NotFound();
             }
-
-            return Ok(semestarSchedules);
-        }
-
-        [HttpGet]
-        [Route("api/semestarSchedules/{year}/{semesterType}")]
-        [ResponseType(typeof(ICollection<SemestarSchedule>))]
-        public async Task<IHttpActionResult> GetSemestarScheduleForYear(int year, Semester semesterType)
-        {
-            var semestarSchedules = await db.SemestarSchedules.Where(t => t.Year == year && t.SemesterType == semesterType).ToListAsync();
-            if (semestarSchedules == null)
-            {
-                return NotFound();
-            }
-
             return Ok(semestarSchedules);
         }
 
@@ -76,6 +61,5 @@ namespace ClassesScheduler.API.Controllers
             }
             base.Dispose(disposing);
         }
-        
     }
 }
