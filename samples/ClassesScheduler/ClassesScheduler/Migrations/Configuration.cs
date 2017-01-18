@@ -66,6 +66,50 @@ namespace ClassesScheduler.Migrations
                 p => p.Name,
                 courses.ToArray()                
                 );
+
+            context.SaveChanges();
+
+            SemestarSchedule ss;
+            Array studyfields = Enum.GetValues(typeof(Enums.StudyField));
+            int calendarYear = 2017;
+            foreach(var sf in studyfields)
+            {
+                for(int i = 1; i < 5; i++)
+                {
+                    //Winter
+                    ss = new SemestarSchedule();
+                    ss.StudyField = (Enums.StudyField)sf;
+                    ss.SemesterType = Enums.Semester.Winter;
+                    ss.Year = calendarYear;
+                    ss.YearOfStudy = i.ToString();
+
+
+                    if (!context.SemestarSchedules.Any(t => t.StudyField == ss.StudyField && t.SemesterType == ss.SemesterType && t.Year == ss.Year && t.YearOfStudy == ss.YearOfStudy))
+                    {
+                        //for everyday
+                        //classes schedule from 8:00h to 18:00h 5 classes            
+
+                        context.SemestarSchedules.Add(ss);
+                    }                    
+
+                    //Summer
+                    ss = new SemestarSchedule();
+                    ss.StudyField = (Enums.StudyField)sf;
+                    ss.SemesterType = Enums.Semester.Summer;
+                    ss.Year = calendarYear;
+                    ss.YearOfStudy = i.ToString();
+                    if (!context.SemestarSchedules.Any(t => t.StudyField == ss.StudyField && t.SemesterType == ss.SemesterType && t.Year == ss.Year && t.YearOfStudy == ss.YearOfStudy))
+                    {
+                        context.SemestarSchedules.Add(ss);
+                    }
+                }
+            }
+
+                       
+
+            ClassSchedule cs = new ClassSchedule();
+            cs.ClassromCode = "SomeRandomCode";
+            cs.CourseId = context.Courses.FirstOrDefault().Id;
         }
     }
 }
