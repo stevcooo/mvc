@@ -5,46 +5,62 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Details</h2>
+<h2>@Html.DisplayFor(model => model.StudyField)</h2>
 
 <div>
-    <h4>SemestarSchedule</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Year)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Year)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.SemesterType)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.SemesterType)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.YearOfStudy)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.YearOfStudy)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.StudyField)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.StudyField)
-        </dd>
-
-    </dl>
+    <h4>@Html.DisplayFor(model => model.SemesterType) semestar schedule / @Html.DisplayFor(model => model.Year) / @Html.DisplayFor(model => model.YearOfStudy) година</h4>
+    <hr />    
 </div>
+
+<div class="row">
+    <div class="col-md-2">
+        <h3>Понеделник</h3>
+        @{
+            foreach (var item in Model.ClassSchedules.Where(t => t.WeekDay == ClassesScheduler.Enums.WeekDay.Monday).OrderBy(t=>t.FromHour))
+            {
+                @Html.Partial("_ClassCheduleDetails", item);
+            }
+        }
+    </div>    
+    <div class="col-md-2">
+        <h3>Вторник</h3>
+        @{
+            foreach (var item in Model.ClassSchedules.Where(t => t.WeekDay == ClassesScheduler.Enums.WeekDay.Tuesday).OrderBy(t => t.FromHour))
+            {
+                @Html.Partial("_ClassCheduleDetails", item);
+            }
+        }
+    </div>
+    <div class="col-md-2">
+        <h3>Среда</h3>
+        @{
+            foreach (var item in Model.ClassSchedules.Where(t => t.WeekDay == ClassesScheduler.Enums.WeekDay.Wednesday).OrderBy(t => t.FromHour))
+            {
+                @Html.Partial("_ClassCheduleDetails", item);
+            }
+        }
+    </div>
+    <div class="col-md-2">
+        <h3>Четврток</h3>
+        @{
+            foreach (var item in Model.ClassSchedules.Where(t => t.WeekDay == ClassesScheduler.Enums.WeekDay.Thursday).OrderBy(t => t.FromHour))
+            {
+                @Html.Partial("_ClassCheduleDetails", item);
+            }
+        }
+    </div>
+    <div class="col-md-2">
+        <h3>Петок</h3>
+        @{
+            foreach (var item in Model.ClassSchedules.Where(t => t.WeekDay == ClassesScheduler.Enums.WeekDay.Friday).OrderBy(t => t.FromHour))
+            {
+                @Html.Partial("_ClassCheduleDetails", item);
+            }
+        }
+    </div>
+    
+</div>
+    
 <p>
     @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
     @Html.ActionLink("Back to List", "Index")

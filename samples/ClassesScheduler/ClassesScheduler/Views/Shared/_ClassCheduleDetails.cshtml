@@ -1,0 +1,6 @@
+﻿@model ClassesScheduler.Models.ClassSchedule
+<div>
+    <h4>@Html.DisplayFor(model => model.Course.Name)</h4>
+    <h5>@Model.Course.Proffesor.FirstName @Model.Course.Proffesor.LastName</h5>
+    Од @Html.DisplayFor(model => model.FromHour) до @Html.DisplayFor(model => model.ToHour)  во просторија @Html.DisplayFor(model => model.ClassromCode)    
+</div>

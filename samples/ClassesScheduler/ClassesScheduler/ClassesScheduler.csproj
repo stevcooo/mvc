@@ -274,6 +274,7 @@
     <Content Include="Views\SemestarSchedules\Details.cshtml" />
     <Content Include="Views\SemestarSchedules\Edit.cshtml" />
     <Content Include="Views\SemestarSchedules\Index.cshtml" />
+    <Content Include="Views\Shared\_ClassCheduleDetails.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
