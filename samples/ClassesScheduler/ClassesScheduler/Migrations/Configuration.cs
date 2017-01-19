@@ -15,6 +15,11 @@ namespace ClassesScheduler.Migrations
 
         protected override void Seed(ApplicationDbContext context)
         {
+            //if (System.Diagnostics.Debugger.IsAttached == false)
+            //{
+            //    System.Diagnostics.Debugger.Launch();
+            //}
+
             context.Proffesors.AddOrUpdate(
                 p=>p.FirstName,
                 new Proffesor { FirstName = "Nathan", LastName = "Marshall" },
@@ -69,47 +74,75 @@ namespace ClassesScheduler.Migrations
 
             context.SaveChanges();
 
-            SemestarSchedule ss;
             Array studyfields = Enum.GetValues(typeof(Enums.StudyField));
-            int calendarYear = 2017;
             foreach(var sf in studyfields)
             {
                 for(int i = 1; i < 5; i++)
                 {
-                    //Winter
-                    ss = new SemestarSchedule();
-                    ss.StudyField = (Enums.StudyField)sf;
-                    ss.SemesterType = Enums.Semester.Winter;
-                    ss.Year = calendarYear;
-                    ss.YearOfStudy = i.ToString();
-
-
-                    if (!context.SemestarSchedules.Any(t => t.StudyField == ss.StudyField && t.SemesterType == ss.SemesterType && t.Year == ss.Year && t.YearOfStudy == ss.YearOfStudy))
-                    {
-                        //for everyday
-                        //classes schedule from 8:00h to 18:00h 5 classes            
-
-                        context.SemestarSchedules.Add(ss);
-                    }                    
-
-                    //Summer
-                    ss = new SemestarSchedule();
-                    ss.StudyField = (Enums.StudyField)sf;
-                    ss.SemesterType = Enums.Semester.Summer;
-                    ss.Year = calendarYear;
-                    ss.YearOfStudy = i.ToString();
-                    if (!context.SemestarSchedules.Any(t => t.StudyField == ss.StudyField && t.SemesterType == ss.SemesterType && t.Year == ss.Year && t.YearOfStudy == ss.YearOfStudy))
-                    {
-                        context.SemestarSchedules.Add(ss);
-                    }
+                    GenerateSemesterSchedule(context, Enums.Semester.Winter, (Enums.StudyField)sf, i);
+                    GenerateSemesterSchedule(context, Enums.Semester.Summer, (Enums.StudyField)sf, i);
                 }
             }
+        }
 
-                       
+        private void GenerateSemesterSchedule(ApplicationDbContext context, Enums.Semester semesterType, Enums.StudyField sf, int yearOfStudy)
+        {
+            SemestarSchedule ss;
+            Array studyfields = Enum.GetValues(typeof(Enums.StudyField));
+            int calendarYear = 2017;
 
-            ClassSchedule cs = new ClassSchedule();
-            cs.ClassromCode = "SomeRandomCode";
-            cs.CourseId = context.Courses.FirstOrDefault().Id;
+            ss = new SemestarSchedule();
+            ss.StudyField = (Enums.StudyField)sf;
+            ss.SemesterType = semesterType;
+            ss.Year = calendarYear;
+            ss.YearOfStudy = yearOfStudy.ToString();
+
+
+            if (!context.SemestarSchedules.Any(t => t.StudyField == ss.StudyField && t.SemesterType == ss.SemesterType && t.Year == ss.Year && t.YearOfStudy == ss.YearOfStudy))
+            {
+                var coursesForThisSchedule = context.Courses.Where(t => t.SemesterType == ss.SemesterType).ToList();
+
+                context.SemestarSchedules.Add(ss);
+                context.SaveChanges();
+
+                var recordedSSId = context.SemestarSchedules.FirstOrDefault(t => t.StudyField == ss.StudyField && t.SemesterType == ss.SemesterType && t.Year == ss.Year && t.YearOfStudy == ss.YearOfStudy).Id;
+
+                GenerateClassSchedules(context, recordedSSId, coursesForThisSchedule, semesterType);
+            }
+        }
+
+        private void GenerateClassSchedules(ApplicationDbContext context, int semestarScheduleId, List<Course> courses, Enums.Semester semesterType)
+        {
+            Array weekDays = Enum.GetValues(typeof(Enums.WeekDay));
+            ClassSchedule cs;
+            int rndCourseId;
+            var rnd = new Random();
+
+            foreach (var day in weekDays)
+            {
+                List<ClassSchedule> classesForThisDay = new List<ClassSchedule>();
+                //classes schedule from 8:00h to 18:00h 5 classes            
+                for (int j = 0; j < 5; j++)
+                {
+                    var rndHour = rnd.Next(8, 19);
+
+                    while (classesForThisDay.Any(t => t.FromHour == rndHour))
+                    {
+                        rndHour = rnd.Next(8, 19);
+                    }
+
+                    cs = new ClassSchedule();
+                    cs.SemestarScheduleId = semestarScheduleId;
+                    cs.WeekDay = (Enums.WeekDay)day;
+                    cs.ClassromCode = rnd.Next(100, 350).ToString();
+                    cs.FromHour = rndHour;
+                    cs.ToHour = rndHour + 1;
+                    rndCourseId = rnd.Next(courses.Count);
+                    cs.CourseId = courses.FirstOrDefault(t => t.Id >= rndCourseId && t.SemesterType == semesterType).Id;
+
+                    context.ClassSchedules.Add(cs);
+                }
+            }
         }
     }
 }
